@@ -6,4 +6,6 @@
     <string name="user_button_text">Followers</string>
 
     <string name="follower_list_title">%s\'s Followers</string>
+    <string name="user_login_button">Login</string>
+    <string name="user_login_textentry">Enter your username</string>
 </resources>
