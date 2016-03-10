@@ -15,8 +15,8 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import edu.lclark.githubfragmentapplication.NetworkAsyncTask;
 import edu.lclark.githubfragmentapplication.R;
-import edu.lclark.githubfragmentapplication.activities.MainActivity;
 import edu.lclark.githubfragmentapplication.models.GithubUser;
 
 /**
@@ -27,6 +27,7 @@ public class UserFragment extends Fragment {
     public static final String ARG_USER = "UserFragment.User";
     private GithubUser mUser;
     private UserListener mUserListener;
+    private NetworkAsyncTask mAsyncTask;
 
     @Bind(R.id.fragment_user_imageview)
     ImageView mImageView;
@@ -61,7 +62,7 @@ public class UserFragment extends Fragment {
 
         mNameTextView.setText(mUser.getLogin());
 
-        mUserListener = (MainActivity) getActivity();
+        mUserListener = (UserListener) getActivity();
 
         return rootView;
     }
@@ -70,6 +71,7 @@ public class UserFragment extends Fragment {
 
     @OnClick(R.id.fragment_user_user_button)
     public void onFollowerButtonClick() {
+        mAsyncTask = new NetworkAsyncTask((NetworkAsyncTask.GithubListener) getActivity());
         mUserListener.onUserFollowerButtonClicked(mUser);
     }
 }
